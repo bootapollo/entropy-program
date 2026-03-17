@@ -1,0 +1,20 @@
+[package]
+name = "entropy-program"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+bincode.workspace = true
+entropy-api.workspace = true
+solana-program.workspace = true
+steel.workspace = true
+
+[dev-dependencies]
+base64 = "0.21"
+rand = "0.8.5"
+solana-program-test = "2.1"
+solana-sdk = "2.1"
+tokio = { version = "1.35", features = ["full"] }
