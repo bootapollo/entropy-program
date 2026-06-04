@@ -12,6 +12,8 @@ use sample::*;
 
 use entropy_api::prelude::*;
 use steel::*;
+use solana_security_txt::security_txt;
+
 
 pub fn process_instruction(
     program_id: &Pubkey,
@@ -26,15 +28,19 @@ pub fn process_instruction(
         EntropyInstruction::Next => process_next(accounts, data)?,
         EntropyInstruction::Reveal => process_reveal(accounts, data)?,
         EntropyInstruction::Sample => process_sample(accounts, data)?,
-        _ => {
-            return Err(trace(
-                "Invalid instruction",
-                ProgramError::InvalidInstructionData,
-            ))
-        }
     }
 
     Ok(())
 }
 
 entrypoint!(process_instruction);
+
+
+security_txt! { 
+    name: "Entropy",
+    project_url: "https://entropy.godl.dev",
+    contacts: "email:bootapollo@pm.me,telegram:bootapollo",
+    policy: "https://github.com/zenx-labs/entropy-program/blob/main/SECURITY.md",
+    preferred_languages: "en",
+    source_code: "https://github.com/zenx-labs/entropy-program"
+}
